@@ -34,7 +34,8 @@ namespace Sweepstakes
                 int choice = GetInput(2);
                 if (choice == 1)
                 {
-                    marketingFirm.managementSystem.InsertSweepstakes();
+                    Sweepstakes sweepstakes = marketingFirm.CreateSweepstakes();
+                    marketingFirm.managementSystem.InsertSweepstakes(sweepstakes);
                 }
                 else if (choice == 2)
                 {
@@ -60,10 +61,12 @@ namespace Sweepstakes
 
             }
             else if (choice == 2) {
-                sweepstakes.PrintContestantInfo()
+                Console.WriteLine("Enter the first and last name of the contestant(eg. John Smith)");
+                string name = GetInput("string");
+                sweepstakes.PrintContestantInfo(sweepstakes.contestants[name]);
             }
             else {
-                sweepstakes.PickWinner();
+                Contestant winner = sweepstakes.PickWinner();
             }
         }
 
@@ -75,10 +78,11 @@ namespace Sweepstakes
             string lName = GetInput("string");
             Console.Write("email address: ");
             string emailAddress = GetInput("string");
-            Console.Write("registration number: ");
-            uint registrationNumber = ;
-
+            Console.Write("registration number(5 digits): ");
+            uint regNumLength = 5;
+            uint registrationNumber = GetInput(regNumLength);
             Contestant contestant = new Contestant(fName, lName, emailAddress, registrationNumber);
+            return contestant;
         }
 
         public static string GetInput(string inputType)
@@ -104,12 +108,19 @@ namespace Sweepstakes
         }
         public static uint GetInput(uint length)
         {
+            bool solelyNumeric = true;
             string numberInput;
             do
             {
                 numberInput = Console.ReadLine();
-            } while (numberInput.Length != 1 && (numberInput[0] < 49 || numberInput[0] > inputChoices));
-            int numberChosen = Convert.ToInt32(numberInput);
+                foreach (char character in numberInput) {
+                    solelyNumeric = (character < 48 || character > 57) ? false : true;
+                    if (solelyNumeric == false) {
+                        break;
+                    }
+                }
+            } while (numberInput.Length != length || !solelyNumeric);
+            uint numberChosen = Convert.ToUInt32(numberInput);
             return numberChosen;
         }
     }
