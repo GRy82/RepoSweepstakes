@@ -14,6 +14,11 @@ namespace Sweepstakes
         {
             this.name = name;
         }
+
+        void CreateSweepstakes()
+        {
+
+        }
         //Use dependency injection to utilize sweepstakes management type of choice.
         //Make sure to document where dependency is being injected and why it is useful.
     }

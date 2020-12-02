@@ -8,8 +8,9 @@ namespace Sweepstakes
 {
     public class Sweepstakes
     {
-        public Dictionary<string, string> dictionary = new Dictionary<string, string> { };
+        public Dictionary<string, Contestant> dictionary = new Dictionary<string, Contestant> { };
         public string name;
+        public string managementType;
         public Sweepstakes(string name)
         {
             this.name = name;
