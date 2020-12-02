@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class MarketingFirm
+    public class MarketingFirm//This class functions to create a sweepstakes
     {
+        public string name;
+
+        public MarketingFirm(string name)
+        {
+            this.name = name;
+        }
+        //Use dependency injection to utilize sweepstakes management type of choice.
+        //Make sure to document where dependency is being injected and why it is useful.
     }
 }
