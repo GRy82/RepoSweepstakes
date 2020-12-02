@@ -27,7 +27,7 @@ namespace Sweepstakes
                 counter++;
             }
             int choice = UserInterface.GetInput(counter - 1);
-            Sweepstakes sweepstakes = sweepArray[choice];
+            Sweepstakes sweepstakes = sweepArray[choice - 1];
             return sweepstakes;
         }
     }
