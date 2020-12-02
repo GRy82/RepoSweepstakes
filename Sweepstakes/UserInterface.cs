@@ -30,7 +30,7 @@ namespace Sweepstakes
         {
             while (true)
             {
-                Console.WriteLine("What would you like to do next?\n Enter 1 to create a sweepstakes.\nEnter 2 to manage a sweepstakes.\nEnter 3 to exit Sweepstakes Manager.");
+                Console.WriteLine("What would you like to do next?\nEnter 1 to create a sweepstakes.\nEnter 2 to manage a sweepstakes.\nEnter 3 to exit Sweepstakes Manager.");
                 int choice = GetInput(2);
                 if (choice == 1)
                 {

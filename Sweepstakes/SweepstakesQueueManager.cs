@@ -11,8 +11,6 @@ namespace Sweepstakes
         public Queue<Sweepstakes> queue = new Queue<Sweepstakes> { };
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-            Console.WriteLine("Please enter the name of the SweepStakes.");
-            string name = UserInterface.GetInput("string");
             queue.Enqueue(sweepstakes);
         }
 
