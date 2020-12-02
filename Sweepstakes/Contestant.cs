@@ -13,6 +13,13 @@ namespace Sweepstakes
         public string emailAddress;
         public uint registrationNumber;
 
+        public Contestant(string firstName, string lastName, string emailAddress, uint registrationNumber)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.emailAddress = emailAddress;
+            this.registrationNumber = registrationNumber;
+        }
 
     }
 }

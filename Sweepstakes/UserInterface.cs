@@ -38,7 +38,9 @@ namespace Sweepstakes
                 }
                 else if (choice == 2)
                 {
-
+                    Sweepstakes sweepstakes = marketingFirm.managementSystem.GetSweepstakes();
+                    SweepstakeMenu(sweepstakes);
+                    
                 }
                 else
                 {
@@ -47,6 +49,37 @@ namespace Sweepstakes
             }
         }
        
+
+        private static void SweepstakeMenu(Sweepstakes sweepstakes)
+        {
+            Console.WriteLine("What would you like to do with this sweepstakes?\nEnter 1 to register a contestant.\nEnter 2 to print a contestant's info.\nEnter 3 to chose a winner for the sweepstakes.");
+            int choice = GetInput(3);
+            if (choice == 1) {
+                Contestant contestant = EnterContestantInfo();
+                sweepstakes.RegisterContestant(contestant);
+
+            }
+            else if (choice == 2) {
+                sweepstakes.PrintContestantInfo()
+            }
+            else {
+                sweepstakes.PickWinner();
+            }
+        }
+
+        private static Contestant EnterContestantInfo()
+        {
+            Console.Write("Enter contestant's\n first name: ");
+            string fName = GetInput("string");
+            Console.Write("last name: ");
+            string lName = GetInput("string");
+            Console.Write("email address: ");
+            string emailAddress = GetInput("string");
+            Console.Write("registration number: ");
+            uint registrationNumber = ;
+
+            Contestant contestant = new Contestant(fName, lName, emailAddress, registrationNumber);
+        }
 
         public static string GetInput(string inputType)
         {
@@ -61,6 +94,16 @@ namespace Sweepstakes
         public static int GetInput(int inputChoices)
         {
             inputChoices = inputChoices + 48; //48 is difference between number and ascii value. 
+            string numberInput;
+            do
+            {
+                numberInput = Console.ReadLine();
+            } while (numberInput.Length != 1 && (numberInput[0] < 49 || numberInput[0] > inputChoices));
+            int numberChosen = Convert.ToInt32(numberInput);
+            return numberChosen;
+        }
+        public static uint GetInput(uint length)
+        {
             string numberInput;
             do
             {

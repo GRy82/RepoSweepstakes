@@ -18,7 +18,8 @@ namespace Sweepstakes
 
         public void RegisterContestant(Contestant contestant)
         {
-
+            string firstAndLast = contestant.firstName + contestant.lastName;
+            dictionary.Add(firstAndLast, contestant);
         }
 
         public Contestant PickWinner()
