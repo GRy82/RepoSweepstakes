@@ -10,11 +10,8 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Sweepstakes Management System. To get started, enter your name or the name of your firm. ");
-            string name;
-            name = GetInput("string");
-            MarketingFirm marketingFirm = new MarketingFirm(name);
-            UserInterface
+            MarketingFirm marketingFirm = UserInterface.SetupMarketingFirm();
+            UserInterface.LoopedMenu(marketingFirm);
         }
 
         

@@ -9,7 +9,28 @@ namespace Sweepstakes
     public static class UserInterface
     {
 
-        
+        public static MarketingFirm SetupMarketingFirm()
+        {
+            Console.WriteLine("Welcome to Sweepstakes Management System. To get started, enter your name or the name of your firm.");
+            string name = GetInput("string");
+            Console.WriteLine("Choose what system you would like to use for managing the sweepstakes you run.\nEnter 1 for Queue system. Enter 2 for Stack system.");
+            int choiceNumber = GetInput(2);
+            //ISweepstakesManager managementSystemChoice = (choiceNumber == 1) ? new SweepstakesQueueManager() : new SweepstakesStackManager();
+            ISweepstakesManager managementSystemChoice;
+            if (choiceNumber == 1){
+                managementSystemChoice = new SweepstakesQueueManager();
+            }
+            else {
+                managementSystemChoice = new SweepstakesStackManager();
+            }
+            return new MarketingFirm(name, managementSystemChoice);
+        }
+
+        public static void LoopedMenu(MarketingFirm marketingFirm)
+        {
+            Console.WriteLine("What would you like to do next?\n Enter 1 to add a sweepstakes.\nEnter 2 to manage a sweepstakes");
+            int choice = GetInput(2);
+        }
        
 
         public static string GetInput(string inputType)

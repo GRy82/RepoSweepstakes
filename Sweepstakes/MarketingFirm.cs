@@ -11,23 +11,12 @@ namespace Sweepstakes
         public string name;
         public ISweepstakesManager managementSystem;
 
-        public MarketingFirm(string name)
+        public MarketingFirm(string name, ISweepstakesManager managementSystem)
         {
             this.name = name;
-            this.managementSystem = ChooseManagementStyle();
+            this.managementSystem = managementSystem;
         }
 
-        ISweepstakesManager ChooseManagementStyle()
-        {
-            Console.WriteLine("Choose what system you would like to use for managing the sweepstakes you run.\nEnter 1 for Queue system. Enter 2 for Stack system.");
-            int choiceNumber = Program.GetInput(2);
-            if(choiceNumber == 1) {
-                return new SweepstakesQueueManager();
-            }
-            else {
-                return new SweepstakesStackManager();
-            }
-        }
 
         void CreateSweepstakes()
         {
