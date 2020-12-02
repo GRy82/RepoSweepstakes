@@ -28,8 +28,23 @@ namespace Sweepstakes
 
         public static void LoopedMenu(MarketingFirm marketingFirm)
         {
-            Console.WriteLine("What would you like to do next?\n Enter 1 to add a sweepstakes.\nEnter 2 to manage a sweepstakes");
-            int choice = GetInput(2);
+            while (true)
+            {
+                Console.WriteLine("What would you like to do next?\n Enter 1 to create a sweepstakes.\nEnter 2 to manage a sweepstakes.\nEnter 3 to exit Sweepstakes Manager.");
+                int choice = GetInput(2);
+                if (choice == 1)
+                {
+                    marketingFirm.managementSystem.InsertSweepstakes();
+                }
+                else if (choice == 2)
+                {
+
+                }
+                else
+                {
+                    Environment.Exit(-1);
+                }
+            }
         }
        
 
