@@ -13,14 +13,24 @@ namespace Sweepstakes
         {
             Console.WriteLine("Please enter the name of the SweepStakes.");
             string name = UserInterface.GetInput("string");
-            queue.Enqueue(new Sweepstakes(name));
+            queue.Enqueue(sweepstakes);
         }
 
         public Sweepstakes GetSweepstakes()
         {
-            Sweepstakes sweepstakes;
-            return sweepstakes;
+            int counter = 1;
+            Console.WriteLine("Choose which sweeptakes you want to manage:");
+            Sweepstakes[] sweepArray = new Sweepstakes[queue.Count];
+            foreach (Sweepstakes contest in queue)
+            {
 
+                Console.WriteLine(counter + " " + contest.name);
+                sweepArray[counter - 1] = contest;
+                counter++;
+            }
+            int choice = UserInterface.GetInput(counter - 1);
+            Sweepstakes sweepstakes = sweepArray[choice];
+            return sweepstakes;
         }
     }
 }

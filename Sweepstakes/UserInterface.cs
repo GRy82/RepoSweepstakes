@@ -41,7 +41,6 @@ namespace Sweepstakes
                 {
                     Sweepstakes sweepstakes = marketingFirm.managementSystem.GetSweepstakes();
                     SweepstakeMenu(sweepstakes);
-                    
                 }
                 else
                 {
@@ -67,6 +66,7 @@ namespace Sweepstakes
             }
             else {
                 Contestant winner = sweepstakes.PickWinner();
+                Console.WriteLine($"The winner of {sweepstakes.name} is {winner.firstName} {winner.lastName}!!!");
             }
         }
 
