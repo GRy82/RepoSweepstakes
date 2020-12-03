@@ -10,8 +10,8 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
-            MarketingFirm marketingFirm = UserInterface.SetupMarketingFirm();
-            UserInterface.LoopedMenu(marketingFirm);
+            Simulation simulation = new Simulation();
+            simulation.CreateMarketingFirmWithManager();
         }
 
         

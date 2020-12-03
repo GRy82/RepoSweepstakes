@@ -8,27 +8,18 @@ namespace Sweepstakes
 {
     public class MarketingFirm//This class functions to create a sweepstakes
     {
-        public string name;
-        public ISweepstakesManager managementSystem;
+        public ISweepstakesManager _manager;
 
-        public MarketingFirm(string name, ISweepstakesManager managementSystem)
+        public MarketingFirm(ISweepstakesManager _manager)
         {
-            this.name = name;
-            this.managementSystem = managementSystem;
+            this._manager = _manager;
         }
 
-        public Sweepstakes CreateSweepstakes()
+        public void CreateSweepstake()
         {
-            Console.WriteLine("Please enter the name of the sweepstakes you are starting.");
-            string sweepstakesName = UserInterface.GetInput("string");
-            Console.WriteLine("How long should registration numbers be? Think about the intended scope of this sweepstakes.");
-            uint maxCap = 1; //represents number of digits that user's input can contain.
-            uint registrationLength = UserInterface.GetInput(maxCap);          
-            Sweepstakes newSweepstakes = new Sweepstakes(sweepstakesName, registrationLength);
-            return newSweepstakes;
+            string sweepstakesName = UserInterface.GetUserInputFor("\nPlease enter the name of the sweepstakes you are starting: "); 
+            Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName);
         }
 
-        //Use dependency injection to utilize sweepstakes management type of choice.
-        //Make sure to document where dependency is being injected and why it is useful.
     }
 }

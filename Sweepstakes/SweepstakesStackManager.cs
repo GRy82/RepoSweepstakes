@@ -14,21 +14,11 @@ namespace Sweepstakes
             stack.Push(sweepstakes);
         }
 
+
         public Sweepstakes GetSweepstakes()
         {
-            int counter = 1;
-            Console.WriteLine("Choose which sweeptakes you want to manage:");
-            Sweepstakes[] sweepArray = new Sweepstakes[stack.Count];
-            foreach (Sweepstakes contest in stack)
-            {
-
-                Console.WriteLine(counter + " " + contest.name);
-                sweepArray[counter - 1] = contest;
-                counter++;
-            }
-            int choice = UserInterface.GetInput(counter - 1);
-            Sweepstakes sweepstakes = sweepArray[choice];
-            return sweepstakes;
+            return stack.Pop();
         }
     }
+    
 }
