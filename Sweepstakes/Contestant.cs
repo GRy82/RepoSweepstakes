@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    public class Contestant : IObservable
+    public class Contestant
     {
         public string firstName;
         public string lastName;
@@ -22,9 +22,5 @@ namespace Sweepstakes
         }
 
 
-        IDisposable Subscribe()
-        {
-
-        }
     }
 }

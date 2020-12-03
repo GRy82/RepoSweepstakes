@@ -29,7 +29,7 @@ namespace Sweepstakes
 
         public void RegisterContestant(Contestant contestant)
         {
-            contestants.Add(contestant.registrationNumber, contestant);
+            contestants.Add(contestants.Count, contestant);
         }
 
         public Contestant PickWinner()
@@ -53,7 +53,7 @@ namespace Sweepstakes
         void SendMessages(Contestant winner)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(this.Name, "gwryan@buffalo.edu"));
+            message.From.Add(new MailboxAddress(this.Name, "floorpeoplemusic@gmail.com"));
             message.Subject = "The results of the " + this.Name + "Sweepstakes!!";
             for (int i = 0; i < contestants.Count; i++)
             {
@@ -67,7 +67,7 @@ namespace Sweepstakes
                 }
                 using (var client = new SmtpClient())
                 {
-                    client.Connect("smtp.buffalo.edu", 587, false);
+                    client.Connect("smtp.gmail.com", 587, false);
                     client.Send(message);
                     client.Disconnect(true);
                 }

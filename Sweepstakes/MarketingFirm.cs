@@ -15,10 +15,11 @@ namespace Sweepstakes
             this._manager = _manager;
         }
 
-        public void CreateSweepstake()
+        public Sweepstakes CreateSweepstakes()
         {
             string sweepstakesName = UserInterface.GetUserInputFor("\nPlease enter the name of the sweepstakes you are starting: "); 
             Sweepstakes sweepstakes = new Sweepstakes(sweepstakesName);
+            return sweepstakes;
         }
 
     }
