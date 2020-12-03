@@ -53,8 +53,8 @@ namespace Sweepstakes
         void SendMessages(Contestant winner)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(this.Name, "floorpeoplemusic@gmail.com"));
-            message.Subject = "The results of the " + this.Name + "Sweepstakes!!";
+            message.From.Add(new MailboxAddress(this.Name, "marketingFirmEmail.com"));
+            message.Subject = "The results of the " + this.Name + " Sweepstakes!!";
             for (int i = 0; i < contestants.Count; i++)
             {
                 message.To.Clear();
@@ -68,6 +68,7 @@ namespace Sweepstakes
                 using (var client = new SmtpClient())
                 {
                     client.Connect("smtp.gmail.com", 587, false);
+                    client.Authenticate("marketingFirmEmail.com", "Password");
                     client.Send(message);
                     client.Disconnect(true);
                 }

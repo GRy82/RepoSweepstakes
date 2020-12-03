@@ -26,15 +26,6 @@ namespace Sweepstakes
             //That is the flexibility to use the same needed functionality with different objects of differing reference type.  The encapsulated implementation details may be different 
             //from one object to another, but they can all be interacted with in those ways prescribed by the interface they inherit. 
             MarketingFirm marketingFirm = new MarketingFirm(_manager);
-            Sweepstakes sweepstakes = marketingFirm.CreateSweepstakes();
-            marketingFirm._manager.InsertSweepstakes(sweepstakes);
-            Contestant contestantOne = UserInterface.EnterContestantInfo();
-            Contestant contestantTwo = UserInterface.EnterContestantInfo();
-            sweepstakes.RegisterContestant(contestantOne);
-            sweepstakes.RegisterContestant(contestantTwo);
-            sweepstakes.PrintContestantInfo(contestantOne);
-            sweepstakes.PickWinner();
-
         }
     }
 }
