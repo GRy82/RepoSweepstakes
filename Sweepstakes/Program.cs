@@ -12,6 +12,8 @@ namespace Sweepstakes
         {
             Simulation simulation = new Simulation();
             simulation.CreateMarketingFirmWithManager();
+
+           
         }
 
         
