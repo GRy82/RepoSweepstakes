@@ -29,12 +29,23 @@ namespace Sweepstakes
 
         public IDisposable Subscribe(IObserver<Contestant> observer)
         {
-            IDisposable disposable;
+            int counter = 0;
+            for (int i = 0; i < contestants.Count; i++)
+            {
+                if (observer != contestants[i]) {
+                    counter++;
+                }
+            }
+            if(counter == contestants.Count)
+            {
+                contestants.Add(contestants.Count, (Contestant)observer);
+            }
+
+            return new Unsubscribe(contestants, (Contestant)observer); 
         }
 
         public void RegisterContestant(Contestant contestant)
         {
-            contestants.Add(contestants.Count, contestant);
             this.Subscribe(contestant);
         }
 
@@ -43,7 +54,16 @@ namespace Sweepstakes
             Random rand = new Random();
             int winnerIndex = rand.Next(0, contestants.Count);
             Contestant winner = contestants[winnerIndex];
-            SendMessages(winner);
+            foreach (KeyValuePair<int, Contestant> item in contestants)
+            {
+                if (item.Value == winner)  {
+                    item.Value.status = "winner";
+                }
+                else {
+                    item.Value.status = "loser";
+                }
+                item.Value.OnNext(winner);
+            }
             return winner;
         }
 
@@ -56,47 +76,6 @@ namespace Sweepstakes
 
 
         //Use of API, MailKit by JStedfast
-        void SendMessages(Contestant winner)
-        {
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(this.Name, "marketingFirmEmail.com"));
-            message.Subject = "The results of the " + this.Name + " Sweepstakes!!";
-            for (int i = 0; i < contestants.Count; i++)
-            {
-                message.To.Clear();
-                message.To.Add(new MailboxAddress(contestants[i].firstName + contestants[i].lastName, contestants[i].emailAddress));
-                if (contestants[i] == winner) {
-                    message = TailorMessageToWinner(message, winner);
-                }
-                else{
-                    message = TailorMessageToLoser(message, winner);
-                }
-                using (var client = new SmtpClient())
-                {
-                    client.Connect("smtp.gmail.com", 587, false);
-                    client.Authenticate("marketingFirmEmail.com", "Password");
-                    client.Send(message);
-                    client.Disconnect(true);
-                }
-            }
-        }
-
-        private MimeMessage TailorMessageToWinner(MimeMessage message, Contestant winner)
-        {
-            message.Body = new TextPart("plain")
-            {
-                Text = $@"Congratulations, {winner.firstName} {winner.lastName}!!! You are the winner of our sweepstakes. Hopefully you kept that receipt so you can claim your prize!"
-            };
-            return message;
-        }
-
-        private MimeMessage TailorMessageToLoser(MimeMessage message, Contestant winner)
-        {
-            message.Body = new TextPart("plain")
-            {
-                Text = $@"Thank you so much for your participation in our sweepstakes. Unfortunately, you are not the winner this time around. We'd like to congratulate the winner of our sweepstakes, {winner.firstName} {winner.lastName}!!!"
-            };
-            return message;
-        }
+        
     }
 }
