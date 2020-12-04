@@ -9,7 +9,7 @@ using MimeKit;
 
 namespace Sweepstakes
 {
-    public class Sweepstakes
+    public class Sweepstakes : IObservable<Contestant>
     {
         public Dictionary<int, Contestant> contestants = new Dictionary<int, Contestant> { };
         private string name;
@@ -27,9 +27,15 @@ namespace Sweepstakes
             this.name = name;
         }
 
+        public IDisposable Subscribe(IObserver<Contestant> observer)
+        {
+            IDisposable disposable;
+        }
+
         public void RegisterContestant(Contestant contestant)
         {
             contestants.Add(contestants.Count, contestant);
+            this.Subscribe(contestant);
         }
 
         public Contestant PickWinner()

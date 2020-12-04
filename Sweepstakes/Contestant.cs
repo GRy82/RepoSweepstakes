@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace Sweepstakes
 {
-    public class Contestant
+    public class Contestant : IObserver<Contestant>
     {
         public string firstName;
         public string lastName;
@@ -21,6 +24,20 @@ namespace Sweepstakes
             this.registrationNumber = registrationNumber;
         }
 
+        public void OnNext(Contestant contestant)
+        {
 
+        }
+
+        public void OnError(Exception error)
+        {
+
+        }
+
+
+        public void OnCompleted()
+        {
+
+        }
     }
 }
