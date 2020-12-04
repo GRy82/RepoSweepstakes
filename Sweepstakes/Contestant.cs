@@ -25,6 +25,7 @@ namespace Sweepstakes
             this.registrationNumber = registrationNumber;
         }
 
+        //Use of API, MailKit by JStedfast
         public void OnNext(Contestant winner)
         {
             var message = new MimeMessage();
@@ -57,7 +58,7 @@ namespace Sweepstakes
 
         public void OnCompleted()
         {
-
+            this.status = "Not competing";
         }
 
         private MimeMessage TailorMessageToWinner(MimeMessage message, Contestant winner)

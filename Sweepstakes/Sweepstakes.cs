@@ -63,7 +63,9 @@ namespace Sweepstakes
                     item.Value.status = "loser";
                 }
                 item.Value.OnNext(winner);
+                item.Value.OnCompleted();
             }
+
             return winner;
         }
 
@@ -72,10 +74,6 @@ namespace Sweepstakes
             Console.WriteLine($"\nfirst name: {contestant.firstName}\nlast name: {contestant.lastName}\nemail address:" +
                 $" {contestant.emailAddress}\nregistration number: {contestant.registrationNumber}");
         }
-
-
-
-        //Use of API, MailKit by JStedfast
         
     }
 }
